@@ -4,7 +4,7 @@
    "port": 5432,
    "username": "postgres",
    "password": "",
-   "database": "learn-anything-test",
+   "database": "learn_anything_test",
    "synchronize": true,
    "logging": false,
    "entities": [
