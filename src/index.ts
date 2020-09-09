@@ -27,21 +27,10 @@ createConnection().then(async connection => {
     });
 
     // setup express app here
-    // ...
 
     // start express server
-    app.listen(3000);
+    app.listen(3030);
 
-    // insert new users for test
-    let category = await connection.manager.save(connection.manager.create(Category, {
-        name: "Timber",
-    }));
-    await connection.manager.save(connection.manager.create(Resource, {
-        name: "Phantom",
-        link: "dannyphantom.com",
-        category: category,
-    }));
-
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
+    console.log("Express server has started on port 3030. Open http://localhost:3030/categories to see results");
 
 }).catch(error => console.log(error));

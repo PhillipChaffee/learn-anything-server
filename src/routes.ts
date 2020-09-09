@@ -1,4 +1,5 @@
 import {CategoryController} from "./controller/CategoryController";
+import {ResourceController} from "./controller/ResourceController";
 
 export const Routes = [{
     method: "get",
@@ -22,7 +23,22 @@ export const Routes = [{
     action: "remove"
 }, {
     method: "get",
-    route: "/categories/:id/resources",
-    controller: CategoryController,
-    action: "allResources"
+    route: "/resources",
+    controller: ResourceController,
+    action: "all"
+}, {
+    method: "get",
+    route: "/resources/:id",
+    controller: ResourceController,
+    action: "one"
+}, {
+    method: "post",
+    route: "/resources",
+    controller: ResourceController,
+    action: "save"
+}, {
+    method: "delete",
+    route: "/resources/:id",
+    controller: ResourceController,
+    action: "remove"
 }];

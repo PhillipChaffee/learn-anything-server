@@ -19,13 +19,17 @@ export class CategoryController {
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
-        let userToRemove = await this.categoryRepository.findOne(request.params.id);
-        await this.categoryRepository.remove(userToRemove);
-    }
+        let categoryToRemove = await this.categoryRepository.findOne(request.params.id);
 
-    async allResources(request: Request, response: Response, next: NextFunction) {
-        let category = await this.categoryRepository.findOneOrFail(request.params.id);
-        return category.resources;
+        if(categoryToRemove.resources && categoryToRemove.resources.length > 0){
+            response.status(409);
+            response.send("Cannot delete a category that still has resources.");
+        }
+
+        await this.categoryRepository.remove(categoryToRemove);
+
+        response.status(202);
+        response.send();
     }
 
 }

@@ -10,13 +10,9 @@ export class Category {
     @Column()
     name: string;
 
-    @Column()
-    lastName: string;
-
-    @Column()
-    age: number;
-
-    @OneToMany(type => Resource, resource => resource.category)
+    @OneToMany(type => Resource, resource => resource.category, {
+        cascade: true,
+    })
     resources: Resource[];
 
 }
