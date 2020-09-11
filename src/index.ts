@@ -4,14 +4,15 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
-import {Category} from "./entity/Category";
-import {Resource} from "./entity/Resource";
 
 createConnection().then(async connection => {
 
     // create express app
     const app = express();
     app.use(bodyParser.json());
+
+    const cors = require('cors');
+    app.use(cors());
 
     // register express routes from defined application routes
     Routes.forEach(route => {
@@ -29,8 +30,8 @@ createConnection().then(async connection => {
     // setup express app here
 
     // start express server
-    app.listen(3030);
+    app.listen(8080);
 
-    console.log("Express server has started on port 3030. Open http://localhost:3030/categories to see results");
+    console.log("Express server has started on port 8080. Open http://localhost:8080/categories to see results");
 
 }).catch(error => console.log(error));
