@@ -1,24 +1,24 @@
-{
-   "type": "postgres",
-   "host": "learn-anything-prod.csune6yvwmny.us-west-2.rds.amazonaws.com",
-   "port": 5432,
-   "username": "postgres",
-   "password": "nV48ritBgah750ffDdMCcC9DOIwPvK",
-   "database": "learn-anything",
-   "synchronize": true,
-   "logging": false,
-   "entities": [
-      "src/entity/**/*.ts"
-   ],
-   "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-   }
+module.exports = {
+    "type": process.env.TYPEORM_CONNECTION,
+    "host": process.env.TYPEORM_HOST,
+    "port": process.env.TYPEORM_PORT,
+    "username": process.env.TYPEORM_USERNAME,
+    "password": process.env.TYPEORM_PASSWORD,
+    "database": process.env.TYPEORM_DATABASE,
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+        "src/entity/**/*.ts"
+    ],
+    "migrations": [
+        "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+        "src/subscriber/**/*.ts"
+    ],
+    "cli": {
+        "entitiesDir": "src/entity",
+        "migrationsDir": "src/migration",
+        "subscribersDir": "src/subscriber"
+    }
 }
