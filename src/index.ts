@@ -12,7 +12,9 @@ createConnection().then(async connection => {
     app.use(bodyParser.json());
 
     const cors = require('cors');
-    app.use(cors());
+    app.use(cors({
+        origin: ["http://localhost:3000", "https://learnanything.cafe"]
+    }));
 
     // register express routes from defined application routes
     Routes.forEach(route => {

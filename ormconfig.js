@@ -1,10 +1,10 @@
 {
    "type": "postgres",
-   "host": "localhost",
+   "host": "learn-anything-prod.csune6yvwmny.us-west-2.rds.amazonaws.com",
    "port": 5432,
    "username": "postgres",
-   "password": "",
-   "database": "learn_anything_test",
+   "password": "nV48ritBgah750ffDdMCcC9DOIwPvK",
+   "database": "learn-anything",
    "synchronize": true,
    "logging": false,
    "entities": [
