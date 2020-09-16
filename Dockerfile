@@ -11,12 +11,14 @@ COPY package*.json ./
 #RUN npm install
 # If you are building your code for production
 RUN npm ci --only=production
-
-# Compile typescript
-RUN npx tsc
+RUN npm i -g typescript@3.3.3333
+RUN npm i @types/node@^8.0.29
 
 # Bundle app source
 COPY . .
+
+# Compile typescript
+RUN tsc
 
 EXPOSE 8080
 CMD [ "node", "build/index.js" ]
