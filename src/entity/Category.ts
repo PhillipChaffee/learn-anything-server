@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany} from "typeorm";
 import {Resource} from "./Resource";
 
 @Entity()
@@ -10,7 +10,7 @@ export class Category {
     @Column()
     name: string;
 
-    @OneToMany(type => Resource, resource => resource.category, {
+    @ManyToMany(type => Resource, resource => resource.categories, {
         cascade: true,
     })
     resources: Resource[];

@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn, ManyToMany} from "typeorm";
 import {Category} from "./Category";
 
 @Entity()
@@ -13,7 +13,7 @@ export class Resource {
     @Column()
     link: string;
 
-    @ManyToOne(type => Category, category => category.resources)
-    category: Category;
+    @ManyToMany(type => Category, category => category.resources)
+    categories: Category[];
 
 }
