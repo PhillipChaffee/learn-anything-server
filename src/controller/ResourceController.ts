@@ -10,7 +10,7 @@ export class ResourceController {
 
     async all(request: Request, response: Response, next: NextFunction) {
         if (request.query.categoryId) {
-            return this.resourceRepository.createQueryBuilder("resource").innerJoin("resource.category", "category").where("category.id = :categoryId").setParameter("categoryId", request.query.categoryId).getMany();
+            return this.resourceRepository.createQueryBuilder("resource").innerJoin("resource.categories", "category").where("category.id = :categoryId").setParameter("categoryId", request.query.categoryId).getMany();
         }
 
         return this.resourceRepository.find();
@@ -21,15 +21,12 @@ export class ResourceController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        let category = await this.categoryRepository.findOneOrFail(request.body.categoryId);
-        if (!category.resources) {
-            category.resources = [];
-        }
+        let categories = await this.categoryRepository.findByIds(request.body.categoryIds);
 
-        category.resources.push(request.body);
-        await this.categoryRepository.save(category);
+        let resourceToSave = request.body as Resource;
+        resourceToSave.categories = categories;
 
-        return this.resourceRepository.save(request.body);
+        return this.resourceRepository.save(resourceToSave);
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
