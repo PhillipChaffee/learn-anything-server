@@ -13,6 +13,9 @@ export class Resource {
     @Column()
     link: string;
 
+    @Column()
+    score: number;
+
     @ManyToMany(type => Category, category => category.resources)
     @JoinTable()
     categories: Category[];

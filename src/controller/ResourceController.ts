@@ -21,10 +21,12 @@ export class ResourceController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        let categories = await this.categoryRepository.findByIds(request.body.categoryIds);
-
         let resourceToSave = request.body as Resource;
-        resourceToSave.categories = categories;
+
+        if (request.body.categoryIds) {
+            let categories = await this.categoryRepository.findByIds(request.body.categoryIds);
+            resourceToSave.categories = categories;
+        }
 
         return this.resourceRepository.save(resourceToSave);
     }
