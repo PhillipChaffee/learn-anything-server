@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn, ManyToMany} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn, ManyToMany, JoinTable} from "typeorm";
 import {Category} from "./Category";
 
 @Entity()
@@ -14,6 +14,7 @@ export class Resource {
     link: string;
 
     @ManyToMany(type => Category, category => category.resources)
+    @JoinTable()
     categories: Category[];
 
 }

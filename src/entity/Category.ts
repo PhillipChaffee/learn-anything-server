@@ -10,9 +10,7 @@ export class Category {
     @Column()
     name: string;
 
-    @ManyToMany(type => Resource, resource => resource.categories, {
-        cascade: true,
-    })
+    @ManyToMany(type => Resource, resource => resource.categories)
     resources: Resource[];
 
 }
