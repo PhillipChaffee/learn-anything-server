@@ -7,7 +7,14 @@ export class CategoryController {
     private categoryRepository = getRepository(Category);
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return this.categoryRepository.find();
+        let categories = await this.categoryRepository.find({relations: ['resources']});
+
+        for(let category of categories){
+            category['resourceCount'] = category.resources.length;
+            delete category.resources;
+        }
+
+        return categories;
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
